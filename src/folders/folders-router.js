@@ -24,6 +24,11 @@ foldersRouter
     .post(jsonParser, (req,res,next)=>{
         const { name } = req.body;
         const newFolder = { name };
+        if(!newFolder.name){
+            return res.status(400).json({
+                error: {message: `Missing name in request body.`}
+            })
+        }
         FoldersService.insertFolder(
             req.app.get('db'),
             newFolder
@@ -71,6 +76,7 @@ foldersRouter
     .patch(jsonParser, (req,res,next)=>{
         const { name } = req.body;
         const folderToUpdate = { name };
+        const folderSani = serializeFolder(folderToUpdate)
         if(!name){
             res.status(400).json({
                 error: {message: `Request body must have name for folder.`}
@@ -79,7 +85,7 @@ foldersRouter
         FoldersService.updateFolder(
             req.app.get('db'),
             req.params.folder_id,
-            folderToUpdate
+            folderSani
         )
             .then(numRowsAffected=>{
                 res.status(204).end()

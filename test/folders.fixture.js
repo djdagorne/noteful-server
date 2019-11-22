@@ -41,7 +41,8 @@ function makeMaliciousFolders(){
         }
     ];
     
-    return { maliciousFolders,
+    return {
+        maliciousFolders,
         expectedFolders
     }
 }

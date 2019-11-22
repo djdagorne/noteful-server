@@ -88,7 +88,6 @@ notesRouter
 				})
             }
         }
-        updatedNote.date_modified = new Date();
         NotesService.updateNote(
             req.app.get('db'),
             req.params.note_id,

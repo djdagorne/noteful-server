@@ -23,7 +23,7 @@ function makeNotesArray(){
         },
     ]
 }
-function makeMaliciousNotes(){
+function makeMaliciousNote(){
     const maliciousNote = {
         id: 911,
         title: '<script>alert("xss");</script>',
@@ -46,5 +46,5 @@ function makeMaliciousNotes(){
 
 module.exports = {
     makeNotesArray,
-    makeMaliciousNotes
+    makeMaliciousNote
 }
